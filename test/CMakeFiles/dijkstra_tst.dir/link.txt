@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/dijkstra_tst.dir/InputTest.cpp.o CMakeFiles/dijkstra_tst.dir/main.cpp.o -o dijkstra_tst  -ldijkstra_lib ../lib/libgtest.a -lpthread 
