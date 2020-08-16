@@ -3,13 +3,14 @@
 //
 
 #include "Edge.h"
-std::ostream& operator<<(std::ostream &out, const Edge &edge) {
+
+std::ostream &operator<<(std::ostream &out, const Edge &edge) {
 
     out << "Edge: ";
-    out << " Description: "<<edge.get_description();
-    out << ", Metric: "<< edge.get_metric();
-    out << ", End_1: "<< ((edge.m_end_1.expired()) ? -1337: (edge.m_end_1.lock())->get_id());
-    out << ", End_2: "<< ((edge.m_end_2.expired()) ? -1337 : (edge.m_end_2.lock())->get_id());
+    out << " Description: " << edge.get_description();
+    out << ", Metric: " << edge.get_metric();
+    out << ", End_1: " << ((edge.m_end_1.expired()) ? -1337 : (edge.m_end_1.lock())->get_id());
+    out << ", End_2: " << ((edge.m_end_2.expired()) ? -1337 : (edge.m_end_2.lock())->get_id());
     return out;
 }
 
@@ -17,7 +18,7 @@ void Edge::set_metric(metric_t in_metric) {
     m_metric = in_metric;
 }
 
-Edge::metric_t Edge::get_metric() const{
+Edge::metric_t Edge::get_metric() const {
     return m_metric;
 }
 

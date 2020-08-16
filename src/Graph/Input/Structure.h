@@ -58,26 +58,25 @@ private:
 
 public:
 
-    friend std::ostream& operator<<(std::ostream& os, const Structure& obj) {
+    friend std::ostream &operator<<(std::ostream &os, const Structure &obj) {
 
         os << "[";
 
-            for (const auto& x: obj.m_id_vertex_map) {
-                os << "{";
-                auto &vex = x.second;
-                os << *vex << "";
+        for (const auto &x: obj.m_id_vertex_map) {
+            os << "{";
+            auto &vex = x.second;
+            os << *vex << "";
 
-                for (auto &edge: vex.get()->get_edges()) {
-                    os << "{";
-                    os << *edge;
-                    os << "},";
-                }
+            for (auto &edge: vex.get()->get_edges()) {
+                os << "{";
+                os << *edge;
                 os << "},";
             }
+            os << "},";
+        }
         os << "]";
         return os;
     }
-
 
 
     Structure() : m_input_automata(*this) {};
@@ -87,10 +86,12 @@ public:
     graphState readData(std::string repr_graph);
 
     neighbour_vertex_id_t get_no_vertex() const;
-    void create_vertex(decltype(m_number_of_vertex) id);
-    void delete_vertex(decltype(m_number_of_vertex) id);
-    std::shared_ptr<Vertex> get_vertex(decltype(m_number_of_vertex) id) const;
 
+    void create_vertex(decltype(m_number_of_vertex) id);
+
+    void delete_vertex(decltype(m_number_of_vertex) id);
+
+    std::shared_ptr<Vertex> get_vertex(decltype(m_number_of_vertex) id) const;
 
 
 private:

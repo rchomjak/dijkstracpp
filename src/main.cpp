@@ -2,6 +2,7 @@
 #include <ostream>
 #include "Graph/Input/Structure.h"
 #include "Dijkstra.h"
+
 int main() {
 
     std::string in_text = "5\n"
@@ -10,9 +11,9 @@ int main() {
     auto x = Structure();
     x.readData(std::string(in_text));
 
-    std::cout<<x<<std::endl;
+    std::cout << x << std::endl;
     auto dij = Dijkstra(x);
-    dij.compute(0,2);
+    dij.compute(0, 2);
     for (auto &x:dij.get_neigh()) {
         std::cout << x << std::endl;
     }

@@ -11,7 +11,7 @@
 #include "Vertex.h"
 
 
-void Vertex::set_id(decltype(Vertex::m_id) vertex_id){
+void Vertex::set_id(decltype(Vertex::m_id) vertex_id) {
     m_id = vertex_id;
 }
 
@@ -40,14 +40,13 @@ std::vector<std::shared_ptr<Edge>> Vertex::get_edge(neighbour_edge_id_t edge_id)
 
     try {
         return_edge_vec.emplace_back(m_edges_ptr_map.at(edge_id));
-    } catch (const std::out_of_range &exception) {
-        ;
+    } catch (const std::out_of_range &exception) { ;
     }
 
     return return_edge_vec;
 }
 
-std::vector<std::pair<std::int64_t , std::shared_ptr<Vertex>>> Vertex::get_neighbours() const {
+std::vector<std::pair<std::int64_t, std::shared_ptr<Vertex>>> Vertex::get_neighbours() const {
 
     std::shared_ptr<Vertex> vertex;
     std::shared_ptr<Edge> edge;
@@ -66,7 +65,7 @@ std::vector<std::pair<std::int64_t , std::shared_ptr<Vertex>>> Vertex::get_neigh
         metric = edge->get_metric();
 
         for (auto &l_vertex: edge->get_vertices()) {
-            if (!l_vertex.expired()){
+            if (!l_vertex.expired()) {
                 auto ptr = l_vertex.lock();
                 if (ptr.get() == this) {
                     am_i_in_edge = true;
@@ -99,12 +98,12 @@ std::vector<std::shared_ptr<Edge>> Vertex::get_edges() const {
     return ret_vec;
 }
 
-std::ostream& operator<<(std::ostream &out, const Vertex &vertex) {
+std::ostream &operator<<(std::ostream &out, const Vertex &vertex) {
     out << "{Vertex id: " << std::to_string(vertex.get_id());
-    out<< ", Edges:{";
+    out << ", Edges:{";
     for (auto &edge: vertex.get_edges()) {
-        out<<"{";
-        out<<*edge << "}, ";
+        out << "{";
+        out << *edge << "}, ";
     }
     out << "}}";
     return out;

@@ -27,23 +27,29 @@ private:
 public:
 
     Vertex() {};
+
     ~Vertex() = default;
 
-    Vertex(std::int64_t id): m_id(id){};
+    Vertex(std::int64_t id) : m_id(id) {};
 
     void set_id(decltype(Vertex::m_id) vertex_id);
+
     bool add_edge(neighbour_edge_id_t edge_id, std::shared_ptr<Edge> edge);
+
     void del_edge(neighbour_edge_id_t edge_id);
+
     std::vector<std::shared_ptr<Edge>> get_edge(neighbour_edge_id_t edge_id) const;
+
     std::vector<std::shared_ptr<Edge>> get_edges() const;
-    std::vector<std::pair<std::int64_t , std::shared_ptr<Vertex>>> get_neighbours() const;
+
+    std::vector<std::pair<std::int64_t, std::shared_ptr<Vertex>>> get_neighbours() const;
 
 
-    friend std::ostream& operator<<(std::ostream &out, const Vertex &vertex);
+    friend std::ostream &operator<<(std::ostream &out, const Vertex &vertex);
+
     neighbour_vertex_id_t get_id() const;
 
 };
-
 
 
 #endif //DIJKSTRA_VERTEX_H

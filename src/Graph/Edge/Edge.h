@@ -4,11 +4,13 @@
 
 #ifndef DIJKSTRA_EDGE_H
 #define DIJKSTRA_EDGE_H
+
 #include <memory>
 #include <stdexcept>
 #include "../Vertex/Vertex.h"
 
 class Vertex;
+
 class Edge {
 
 public:
@@ -35,7 +37,7 @@ public:
 
     decltype(m_description) get_description() const;
 
-    friend std::ostream& operator<<(std::ostream &out, const Edge &edge);
+    friend std::ostream &operator<<(std::ostream &out, const Edge &edge);
 
     Edge() {};
 
