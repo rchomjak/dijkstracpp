@@ -5,6 +5,7 @@
 #ifndef DIJKSTRA_VERTEX_H
 #define DIJKSTRA_VERTEX_H
 
+#include <atomic>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -12,35 +13,37 @@
 
 #include "../Edge/Edge.h"
 
-typedef std::int64_t neighbour_edge_id;
-typedef std::int64_t neighbour_vertex_id;
+typedef std::int64_t neighbour_edge_id_t;
+typedef std::int64_t neighbour_vertex_id_t;
 
 class Edge;
+
 class Vertex {
 
 private:
-    neighbour_vertex_id m_id {-1};
-    std::unordered_map<neighbour_edge_id, std::shared_ptr<Edge>> m_edges_ptr_map;
+    neighbour_vertex_id_t m_id;
+    std::unordered_map<neighbour_edge_id_t, std::shared_ptr<Edge>> m_edges_ptr_map;
 
 public:
-    //TODO: del specific connection
-    //TODO: add specific connection
-    //TODO: get neighbours
 
     Vertex() {};
     ~Vertex() = default;
 
-    Vertex(neighbour_vertex_id id): m_id(id){};
+    Vertex(std::int64_t id): m_id(id){};
 
-    void set_id(neighbour_vertex_id vertex_id){
-        m_id = vertex_id;
-    }
+    void set_id(decltype(Vertex::m_id) vertex_id);
+    bool add_edge(neighbour_edge_id_t edge_id, std::shared_ptr<Edge> edge);
+    void del_edge(neighbour_edge_id_t edge_id);
+    std::vector<std::shared_ptr<Edge>> get_edge(neighbour_edge_id_t edge_id) const;
+    std::vector<std::shared_ptr<Edge>> get_edges() const;
+    std::vector<std::pair<std::int64_t , std::shared_ptr<Vertex>>> get_neighbours() const;
 
-    bool add_edge(neighbour_edge_id edge_id, std::shared_ptr<Edge> edge) {
 
-        m_edges_ptr_map.insert({edge_id, edge});
-    }
+    friend std::ostream& operator<<(std::ostream &out, const Vertex &vertex);
+    neighbour_vertex_id_t get_id() const;
 
 };
+
+
 
 #endif //DIJKSTRA_VERTEX_H
